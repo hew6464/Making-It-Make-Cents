@@ -1,0 +1,884 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Accounting Explorer</title>
+  <style>*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:#f6f8fb;color:#182230}button,input,select{font:inherit}.topbar{position:sticky;top:0;z-index:20;display:flex;gap:24px;align-items:center;justify-content:space-between;padding:14px 24px;background:#fff;border-bottom:1px solid #e7ebf0;box-shadow:0 2px 10px rgba(0,0,0,.04)}.brand{display:flex;gap:12px;align-items:center;cursor:pointer;min-width:300px}.logo-mark{width:42px;height:42px;border-radius:12px;background:#111827;color:#fff;display:grid;place-items:center;font-weight:800}.brand-name{font-weight:800}.brand-sub{font-size:12px;color:#6b7280}.topbar nav{display:flex;gap:6px;flex-wrap:wrap;justify-content:center}.topbar nav button,.link-btn{border:0;background:transparent;padding:9px 10px;border-radius:8px;cursor:pointer;color:#374151}.topbar nav button:hover,.link-btn:hover{background:#f1f5f9}.progress-mini{min-width:180px}.progress-mini span{font-size:12px;color:#6b7280}.progress-track{height:7px;background:#e5e7eb;border-radius:999px;overflow:hidden;margin-top:5px}.progress-fill{height:100%;background:#111827;width:0%;transition:width .35s ease}.app-shell{max-width:1120px;margin:0 auto;padding:42px 20px 80px}.hero{padding:58px 0 28px}.eyebrow{display:inline-block;font-size:12px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:#4b5563;background:#e9eef5;padding:7px 10px;border-radius:999px}.hero h1,.page-title{font-size:clamp(38px,6vw,72px);line-height:.98;margin:18px 0;letter-spacing:-.04em}.page-title{font-size:clamp(36px,5vw,58px)}.hero p,.lede{font-size:19px;line-height:1.6;color:#52606d;max-width:760px}.cta-row{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px}.btn{border:0;border-radius:12px;padding:13px 18px;font-weight:750;cursor:pointer;transition:.18s ease}.btn:hover{transform:translateY(-1px)}.btn-primary{background:#111827;color:#fff}.btn-secondary{background:#fff;color:#111827;border:1px solid #d9dee6}.btn-soft{background:#e9eef5;color:#182230}.btn-danger{background:#7f1d1d;color:#fff}.grid{display:grid;gap:18px}.grid-2{grid-template-columns:repeat(2,minmax(0,1fr))}.grid-3{grid-template-columns:repeat(3,minmax(0,1fr))}.grid-4{grid-template-columns:repeat(4,minmax(0,1fr))}.card{background:#fff;border:1px solid #e3e8ef;border-radius:18px;padding:22px;box-shadow:0 7px 24px rgba(20,29,43,.05)}.card h3{margin-top:0}.sim-card{cursor:pointer;transition:.2s ease;position:relative;overflow:hidden}.sim-card:hover{transform:translateY(-4px);box-shadow:0 12px 30px rgba(20,29,43,.09)}.sim-card .verb{font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:.08em;color:#667085}.sim-card .status{display:inline-flex;padding:6px 9px;border-radius:999px;background:#eef2f7;font-size:12px;font-weight:700;margin-top:12px}.section{margin-top:44px}.section h2{font-size:30px;letter-spacing:-.02em;margin-bottom:10px}.section p{color:#5d6978;line-height:1.6}.concept-card{min-height:190px}.concept-card .big-verb{font-size:26px;font-weight:900;margin-bottom:8px}.question-shell{max-width:760px;margin:40px auto}.question-number{font-size:13px;font-weight:800;color:#667085}.question-shell h2{font-size:34px;line-height:1.15}.option-list{display:grid;gap:12px;margin-top:22px}.option{background:#fff;border:1px solid #dfe5ec;border-radius:14px;padding:16px 18px;cursor:pointer;text-align:left;transition:.15s ease}.option:hover{border-color:#94a3b8;transform:translateY(-1px)}.option.selected{border-color:#111827;box-shadow:0 0 0 2px #111827 inset}.option.correct{border-color:#15803d;background:#f0fdf4}.option.incorrect{border-color:#b91c1c;background:#fef2f2}.scale{display:grid;grid-template-columns:repeat(5,1fr);gap:12px}.scale .option{text-align:center}.sim-shell{max-width:900px;margin:0 auto}.sim-top{display:flex;justify-content:space-between;gap:18px;align-items:center;margin-bottom:24px}.sim-top .meta{color:#667085;font-size:13px}.scenario{background:#111827;color:#fff;border-radius:20px;padding:26px;margin:18px 0}.scenario h3{margin-top:0}.feedback{border-radius:14px;padding:16px 18px;margin-top:16px;background:#eef2f7}.feedback.good{background:#ecfdf3;border:1px solid #b7ebc6}.feedback.warn{background:#fff7ed;border:1px solid #fed7aa}.evidence-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin:20px 0}.evidence{background:#fff;border:1px solid #dfe5ec;border-radius:14px;padding:16px;cursor:pointer;min-height:150px}.evidence:hover{border-color:#98a2b3}.evidence .label{font-size:12px;text-transform:uppercase;letter-spacing:.06em;color:#667085;font-weight:800}.badge{display:inline-flex;align-items:center;gap:8px;padding:9px 12px;border-radius:999px;background:#111827;color:#fff;font-weight:800;font-size:13px}.comparison-table{width:100%;border-collapse:collapse;background:#fff;border-radius:16px;overflow:hidden;border:1px solid #e2e8f0}.comparison-table th,.comparison-table td{padding:14px 16px;text-align:left;border-bottom:1px solid #edf0f4}.comparison-table th{background:#f8fafc}.pill{display:inline-flex;padding:6px 9px;border-radius:999px;background:#edf2f7;font-size:12px;font-weight:700}.industry-card{cursor:pointer}.industry-card:hover{border-color:#94a3b8}.industry-detail{margin-top:24px}.result-delta{font-size:46px;font-weight:900}.result-box{background:#111827;color:#fff;border-radius:20px;padding:26px}.teacher-plan{border-left:4px solid #111827}.muted{color:#667085}.small{font-size:13px}.danger{color:#991b1b!important}.inline-note{padding:12px 14px;border-radius:12px;background:#f8fafc;border:1px solid #e5e7eb}.top-gap{margin-top:22px}.center{text-align:center}footer{border-top:1px solid #e5e7eb;background:#fff;padding:28px 24px;color:#667085;display:grid;gap:10px;text-align:center}.footer-actions{display:flex;justify-content:center;gap:12px}.tagline{font-size:24px;font-weight:850;margin-top:20px}.big-number{font-size:58px;font-weight:900}.sticky-actions{position:sticky;bottom:18px;display:flex;justify-content:flex-end;gap:10px;padding-top:18px}.hidden{display:none!important}@media(max-width:900px){.topbar{align-items:flex-start;flex-direction:column}.brand{min-width:0}.topbar nav{justify-content:flex-start}.progress-mini{width:100%}.grid-4,.grid-3{grid-template-columns:repeat(2,minmax(0,1fr))}.evidence-grid{grid-template-columns:1fr}.hero{padding-top:30px}}@media(max-width:640px){.app-shell{padding:28px 15px 60px}.topbar{padding:12px 15px}.brand-sub{display:none}.grid-4,.grid-3,.grid-2{grid-template-columns:1fr}.scale{grid-template-columns:1fr}.hero h1,.page-title{font-size:42px}.question-shell h2{font-size:28px}.cta-row,.sticky-actions{flex-direction:column}.btn{width:100%}.comparison-table{font-size:13px}.comparison-table th,.comparison-table td{padding:10px}.topbar nav{display:none}}</style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand" onclick="app.go('home')">
+      <div class="logo-mark">AE</div>
+      <div>
+        <div class="brand-name">Accounting Explorer</div>
+        <div class="brand-sub">Experience accounting before deciding whether it's for you.</div>
+      </div>
+    </div>
+    <nav>
+      <button onclick="app.go('home')">Home</button>
+      <button onclick="app.go('hub')">Simulations</button>
+      <button onclick="app.go('ai')">AI & Accounting</button>
+      <button onclick="app.go('industries')">Industries</button>
+      <button onclick="app.go('teachers')">For Teachers</button>
+    </nav>
+    <div class="progress-mini">
+      <span id="miniProgressLabel">0 of 5 completed</span>
+      <div class="progress-track"><div id="miniProgressBar" class="progress-fill"></div></div>
+    </div>
+  </header>
+
+  <main id="app" class="app-shell"></main>
+
+  <footer>
+    <div>Accounting Explorer · Career exploration prototype</div>
+    <div class="footer-actions">
+      <button class="link-btn" onclick="app.go('teachers')">For Teachers</button>
+      <button class="link-btn danger" onclick="app.reset()">Restart Experience</button>
+    </div>
+    <small>This prototype is for educational and career-exploration purposes only.</small>
+  </footer>
+
+  <script>const app = (() => {
+  const defaultState = {
+    preSurvey: {},
+    postSurvey: {},
+    completed: { bookkeeping:false, tax:false, audit:false, forensic:false, ai:false },
+    scores: { bookkeeping:0, tax:0, audit:0, forensic:0, ai:0 },
+    badges: [],
+    reflections: {},
+    favoriteAreas: [],
+    selectedIndustry: null,
+    simulationStep: {}
+  };
+
+  let state = loadState();
+  let currentView = 'home';
+
+  const experiences = ['bookkeeping','tax','audit','forensic','ai'];
+
+  const industries = {
+    "Sports": {
+      bookkeeping:"Track team, venue, ticketing, and event financial activity.",
+      tax:"Help athletes or franchises understand tax and business decisions.",
+      audit:"Verify financial information for teams, leagues, and venues.",
+      forensic:"Investigate misuse of organization funds or suspicious payments.",
+      ai:"Analyze ticketing, payroll, and transaction data for unusual patterns."
+    },
+    "Music": {
+      bookkeeping:"Track revenue and expenses for artists, venues, and record labels.",
+      tax:"Advise artists and entertainment companies on tax decisions.",
+      audit:"Verify financial information for music and media companies.",
+      forensic:"Investigate royalty discrepancies or missing funds.",
+      ai:"Analyze royalty and payment data for unusual trends."
+    },
+    "Gaming": {
+      bookkeeping:"Track digital sales, subscriptions, and development costs.",
+      tax:"Evaluate tax implications of studios operating across locations.",
+      audit:"Test revenue, deferred revenue, and transaction data.",
+      forensic:"Investigate payment abuse, vendor fraud, or misuse of funds.",
+      ai:"Analyze massive transaction datasets and flag anomalies."
+    },
+    "Fashion": {
+      bookkeeping:"Track inventory, sales, returns, and operating expenses.",
+      tax:"Support expansion, sourcing, and tax planning decisions.",
+      audit:"Test inventory and sales records.",
+      forensic:"Investigate vendor or procurement fraud.",
+      ai:"Identify unusual purchasing or sales patterns."
+    },
+    "Technology": {
+      bookkeeping:"Track software sales, subscriptions, and operating costs.",
+      tax:"Research credits, incentives, and international tax issues.",
+      audit:"Evaluate revenue, expenses, and financial controls.",
+      forensic:"Investigate insider misconduct or suspicious payments.",
+      ai:"Automate data processing and support complex analysis."
+    },
+    "Movies & Entertainment": {
+      bookkeeping:"Track production budgets, distribution revenue, and expenses.",
+      tax:"Advise productions on incentives and location decisions.",
+      audit:"Verify production and studio financial information.",
+      forensic:"Investigate misuse of production funds or royalty disputes.",
+      ai:"Analyze production and payment data for inconsistencies."
+    },
+    "Healthcare": {
+      bookkeeping:"Track patient revenue, payroll, supplies, and operating costs.",
+      tax:"Support nonprofit, business, and employee tax decisions.",
+      audit:"Verify healthcare organization financial statements.",
+      forensic:"Investigate billing fraud or misuse of organization funds.",
+      ai:"Analyze claims and payment data for unusual patterns."
+    },
+    "Food & Restaurants": {
+      bookkeeping:"Track sales, inventory, payroll, and supplier payments.",
+      tax:"Help evaluate expansion and tax incentives.",
+      audit:"Verify sales, inventory, and expense records.",
+      forensic:"Investigate cash skimming or vendor schemes.",
+      ai:"Classify transactions and flag abnormal spending."
+    },
+    "Government": {
+      bookkeeping:"Track public funds and expenditures.",
+      tax:"Support tax administration and policy implementation.",
+      audit:"Evaluate whether public funds are reported and used appropriately.",
+      forensic:"Investigate fraud, waste, or misuse of government funds.",
+      ai:"Analyze large public datasets and flag anomalies."
+    }
+  };
+
+  function loadState(){
+    try{
+      const raw = localStorage.getItem('accountingExplorerState');
+      return raw ? {...defaultState, ...JSON.parse(raw)} : structuredClone(defaultState);
+    }catch(e){
+      return structuredClone(defaultState);
+    }
+  }
+  function save(){
+    try{ localStorage.setItem('accountingExplorerState', JSON.stringify(state)); }catch(e){}
+    updateMiniProgress();
+  }
+  function reset(){
+    if(confirm('Restart the entire experience? This will erase your progress, badges, and survey responses.')){
+      state = structuredClone(defaultState);
+      try{ localStorage.removeItem('accountingExplorerState'); }catch(e){}
+      go('home');
+    }
+  }
+  function completedCount(){
+    return experiences.filter(k => state.completed[k]).length;
+  }
+  function updateMiniProgress(){
+    const count = completedCount();
+    const label = document.getElementById('miniProgressLabel');
+    const bar = document.getElementById('miniProgressBar');
+    if(label) label.textContent = `${count} of 5 completed`;
+    if(bar) bar.style.width = `${count/5*100}%`;
+  }
+
+  function render(html){
+    document.getElementById('app').innerHTML = html;
+    window.scrollTo({top:0, behavior:'smooth'});
+    updateMiniProgress();
+  }
+
+  function go(view){
+    currentView = view;
+    const map = {
+      home: homeView,
+      survey: surveyView,
+      overview: overviewView,
+      hub: hubView,
+      bookkeeping: () => simulationView('bookkeeping'),
+      tax: () => simulationView('tax'),
+      audit: () => simulationView('audit'),
+      forensic: () => simulationView('forensic'),
+      compare: compareView,
+      ai: aiView,
+      industries: industriesView,
+      reflection: reflectionView,
+      results: resultsView,
+      teachers: teachersView
+    };
+    (map[view] || homeView)();
+  }
+
+  function homeView(){
+    render(`
+      <section class="hero">
+        <span class="eyebrow">Explore Accounting</span>
+        <h1>Think accounting is just taxes and spreadsheets?</h1>
+        <p>Record transactions. Advise a business. Audit financial information. Investigate fraud. Then see how AI is changing the work.</p>
+        <div class="cta-row">
+          <button class="btn btn-primary" onclick="app.go('survey')">Start Exploring</button>
+          <button class="btn btn-secondary" onclick="app.go('hub')">View Simulations</button>
+        </div>
+        <div class="tagline">Record. Advise. Verify. Investigate. Adapt.</div>
+      </section>
+      <section class="section">
+        <h2>Try four different sides of accounting</h2>
+        <div class="grid grid-4">
+          ${simPreview('Bookkeeping','Record','Keep a business organized and figure out what happened.','5 min','bookkeeping')}
+          ${simPreview('Tax','Advise','Help a growing company make a smarter business decision.','7 min','tax')}
+          ${simPreview('Audit','Verify','Investigate whether a company’s numbers can be trusted.','9 min','audit')}
+          ${simPreview('Forensic Accounting','Investigate','Follow financial clues when money starts disappearing.','10 min','forensic')}
+        </div>
+      </section>
+      <section class="section card">
+        <span class="eyebrow">Dedicated AI Experience</span>
+        <h2>And what happens when AI enters the picture?</h2>
+        <p>See what technology can automate—and where accountants still need judgment, context, communication, and professional skepticism.</p>
+        <button class="btn btn-soft" onclick="app.go('ai')">Explore AI & Accounting</button>
+      </section>
+    `);
+  }
+
+  function simPreview(title,verb,desc,duration,route){
+    const status = state.completed[route] ? 'Completed' : 'Not Started';
+    return `<article class="card sim-card" onclick="app.go('${route}')">
+      <div class="verb">${verb}</div><h3>${title}</h3><p>${desc}</p>
+      <span class="pill">${duration}</span><div class="status">${status}</div>
+    </article>`;
+  }
+
+  function surveyView(){
+    const questions = [
+      {key:'associations', multi:true, prompt:'When you hear “accounting,” what comes to mind?', subtitle:'Select everything that applies.', options:['Taxes','Bookkeeping','Math','Spreadsheets','Business','Financial decisions','Fraud investigations','Technology','Auditing','I’m not sure']},
+      {key:'interest', scale:true, prompt:'How interested are you in learning about accounting right now?'},
+      {key:'definition', prompt:'Which description sounds most like accounting to you?', options:['Recording financial transactions','Helping businesses make decisions','Checking whether financial information is reliable','Investigating suspicious financial activity','All of the above','I’m not sure']},
+      {key:'math', prompt:'Do you think accountants need to be especially good at advanced math?', options:['Yes','No','I’m not sure']},
+      {key:'aiBelief', prompt:'Do you think AI will reduce the need for accountants?', options:['Yes','No','I’m not sure']},
+      {key:'preferredActivity', prompt:'Which type of activity sounds most interesting?', options:['Organizing financial information','Helping a business make a decision','Finding something that doesn’t make sense','Investigating suspicious activity','Working with technology','None of these']}
+    ];
+    let idx = 0;
+    const shell = () => {
+      const q = questions[idx];
+      const val = state.preSurvey[q.key];
+      let options = '';
+      if(q.scale){
+        options = `<div class="scale">${[1,2,3,4,5].map(n => `<button class="option ${val===n?'selected':''}" onclick="app.setPre('${q.key}',${n}); app.refreshSurvey(${idx})">${n}<br><span class="small">${n===1?'Not interested':n===5?'Very interested':''}</span></button>`).join('')}</div>`;
+      } else {
+        options = `<div class="option-list">${q.options.map(o => {
+          const selected = q.multi ? (Array.isArray(val)&&val.includes(o)) : val===o;
+          return `<button class="option ${selected?'selected':''}" onclick="app.chooseSurvey('${q.key}',${JSON.stringify(o)},${q.multi},${idx})">${o}</button>`;
+        }).join('')}</div>`;
+      }
+      render(`<div class="question-shell">
+        <div class="question-number">Question ${idx+1} of ${questions.length}</div>
+        <div class="progress-track"><div class="progress-fill" style="width:${(idx+1)/questions.length*100}%"></div></div>
+        <h2>${q.prompt}</h2>${q.subtitle?`<p class="muted">${q.subtitle}</p>`:''}
+        ${options}
+        <div class="sticky-actions">
+          ${idx>0?`<button class="btn btn-secondary" onclick="app.prevSurvey(${idx})">Back</button>`:''}
+          <button class="btn btn-primary" ${val==null||((Array.isArray(val))&&val.length===0)?'disabled style="opacity:.45;cursor:not-allowed"':''} onclick="app.nextSurvey(${idx})">${idx===questions.length-1?'See What Accountants Actually Do':'Continue'}</button>
+        </div>
+      </div>`);
+    };
+    window.__surveyShell = shell;
+    window.__surveyIdx = idx;
+    shell();
+  }
+
+  function refreshSurvey(idx){
+    window.__surveyIdx = idx;
+    const ev = new Event('refreshSurveyInternal');
+    document.dispatchEvent(ev);
+  }
+  document.addEventListener('refreshSurveyInternal', () => {});
+  function chooseSurvey(key, value, multi, idx){
+    if(multi){
+      const arr = Array.isArray(state.preSurvey[key]) ? [...state.preSurvey[key]] : [];
+      const i = arr.indexOf(value);
+      if(i>=0) arr.splice(i,1); else arr.push(value);
+      state.preSurvey[key]=arr;
+    } else state.preSurvey[key]=value;
+    save(); surveyQuestion(idx);
+  }
+  function setPre(key,val){ state.preSurvey[key]=val; save(); }
+  function surveyQuestion(idx){
+    const questions = [
+      {key:'associations', multi:true, prompt:'When you hear “accounting,” what comes to mind?', subtitle:'Select everything that applies.', options:['Taxes','Bookkeeping','Math','Spreadsheets','Business','Financial decisions','Fraud investigations','Technology','Auditing','I’m not sure']},
+      {key:'interest', scale:true, prompt:'How interested are you in learning about accounting right now?'},
+      {key:'definition', prompt:'Which description sounds most like accounting to you?', options:['Recording financial transactions','Helping businesses make decisions','Checking whether financial information is reliable','Investigating suspicious financial activity','All of the above','I’m not sure']},
+      {key:'math', prompt:'Do you think accountants need to be especially good at advanced math?', options:['Yes','No','I’m not sure']},
+      {key:'aiBelief', prompt:'Do you think AI will reduce the need for accountants?', options:['Yes','No','I’m not sure']},
+      {key:'preferredActivity', prompt:'Which type of activity sounds most interesting?', options:['Organizing financial information','Helping a business make a decision','Finding something that doesn’t make sense','Investigating suspicious activity','Working with technology','None of these']}
+    ];
+    const q=questions[idx], val=state.preSurvey[q.key];
+    let options='';
+    if(q.scale){
+      options=`<div class="scale">${[1,2,3,4,5].map(n=>`<button class="option ${val===n?'selected':''}" onclick="app.setPre('${q.key}',${n}); app.surveyQuestion(${idx})">${n}<br><span class="small">${n===1?'Not interested':n===5?'Very interested':''}</span></button>`).join('')}</div>`;
+    } else {
+      options=`<div class="option-list">${q.options.map(o=>{
+        const selected=q.multi?(Array.isArray(val)&&val.includes(o)):val===o;
+        return `<button class="option ${selected?'selected':''}" onclick='app.chooseSurvey(${JSON.stringify(q.key)},${JSON.stringify(o)},${!!q.multi},${idx})'>${o}</button>`;
+      }).join('')}</div>`;
+    }
+    render(`<div class="question-shell">
+      <div class="question-number">Question ${idx+1} of ${questions.length}</div>
+      <div class="progress-track"><div class="progress-fill" style="width:${(idx+1)/questions.length*100}%"></div></div>
+      <h2>${q.prompt}</h2>${q.subtitle?`<p class="muted">${q.subtitle}</p>`:''}
+      ${options}
+      <div class="sticky-actions">
+        ${idx>0?`<button class="btn btn-secondary" onclick="app.surveyQuestion(${idx-1})">Back</button>`:''}
+        <button class="btn btn-primary" ${val==null||((Array.isArray(val))&&val.length===0)?'disabled style="opacity:.45;cursor:not-allowed"':''} onclick="app.nextSurvey(${idx})">${idx===questions.length-1?'See What Accountants Actually Do':'Continue'}</button>
+      </div>
+    </div>`);
+  }
+  function prevSurvey(idx){ surveyQuestion(idx-1); }
+  function nextSurvey(idx){
+    if(idx<5) surveyQuestion(idx+1);
+    else go('overview');
+  }
+
+  function overviewView(){
+    render(`
+      <span class="eyebrow">The Big Picture</span>
+      <h1 class="page-title">Accounting is more than one job.</h1>
+      <p class="lede">Different accountants solve different kinds of problems. Here are five ways to think about the profession.</p>
+      <div class="grid grid-3 section">
+        ${concept('Record','Bookkeeping','What happened?','Keep financial information organized and accurate.')}
+        ${concept('Advise','Tax','What should we do?','Help businesses understand the financial and tax consequences of decisions.')}
+        ${concept('Verify','Audit','Can we trust this?','Gather evidence and evaluate whether financial information is reliable.')}
+        ${concept('Investigate','Forensic Accounting','What happened here?','Follow financial evidence when something appears suspicious.')}
+        ${concept('Adapt','AI + Technology','How is the work changing?','Use technology to analyze more information while applying human judgment.')}
+      </div>
+      <div class="cta-row"><button class="btn btn-primary" onclick="app.go('hub')">Try the Work Yourself</button></div>
+    `);
+  }
+  function concept(verb,career,q,desc){
+    return `<div class="card concept-card"><div class="big-verb">${verb}</div><h3>${career}</h3><p><strong>${q}</strong></p><p>${desc}</p></div>`;
+  }
+
+  function hubView(){
+    render(`
+      <span class="eyebrow">Simulation Hub</span>
+      <h1 class="page-title">Try the work yourself.</h1>
+      <p class="lede">You can complete the simulations in any order. For the full story, start with Bookkeeping and work through Forensic Accounting.</p>
+      <div class="grid grid-2 section">
+        ${simPreview('Bookkeeping','Record','Organize a growing company’s transactions and find a classification error.','5 min','bookkeeping')}
+        ${simPreview('Tax','Advise','Compare expansion options and decide which facts actually matter.','7 min','tax')}
+        ${simPreview('Audit','Verify','Investigate an unusual inventory trend and evaluate evidence.','9 min','audit')}
+        ${simPreview('Forensic Accounting','Investigate','Follow suspicious payments and build an evidence-based case.','10 min','forensic')}
+      </div>
+      <section class="section card">
+        <h2>AI is a fifth experience</h2>
+        <p>After the simulations, explore what AI can automate and where accountants still need judgment, context, communication, and professional skepticism.</p>
+        <button class="btn btn-soft" onclick="app.go('ai')">Open AI & Accounting</button>
+      </section>
+    `);
+  }
+
+  const sims = {
+    bookkeeping: {
+      title:'Bookkeeping: Keep the Business Organized',
+      badge:'Record Keeper',
+      intro:'Campus Threads is a growing clothing company. Before anyone can analyze the business, someone has to make sure its records accurately reflect what happened.',
+      steps:[
+        {type:'choice', title:'Monthly rent', body:'Campus Threads pays $1,500 for monthly store rent. What happened?', options:[
+          ['Cash decreased and an expense occurred',true,'Correct. Paying rent reduces cash and creates an expense.'],
+          ['Cash increased',false,'Rent is a payment, so cash does not increase.'],
+          ['Revenue increased',false,'Paying rent is not revenue.'],
+          ['Inventory increased',false,'Rent does not create inventory.']
+        ], extra:'Optional accounting entry: Debit Rent Expense / Credit Cash.'},
+        {type:'choice', title:'Buying inventory', body:'Campus Threads buys $2,000 of clothing it plans to sell to customers. What changed?', options:[
+          ['Inventory increased and cash decreased',true,'Correct. The business exchanged cash for inventory.'],
+          ['Revenue increased',false,'Buying inventory does not create revenue.'],
+          ['Rent increased',false,'This is not a rent payment.'],
+          ['Inventory decreased',false,'The company just purchased more inventory.']
+        ]},
+        {type:'choice', title:'Customer sale', body:'A customer purchases a sweatshirt for $80. Which statement best describes what happened?', options:[
+          ['The company earned revenue',true,'Correct. The sale creates revenue.'],
+          ['The company paid an expense',false,'The customer paid the company, not the other way around.'],
+          ['The company borrowed money',false,'This is a sale, not a loan.'],
+          ['The company purchased inventory',false,'The company sold an item.']
+        ]},
+        {type:'choice', title:'Find the error', body:'One transaction was categorized incorrectly: Store rent → Rent Expense; Packaging materials → Supplies; Laptop purchase → Advertising; Online sale → Revenue. Which one is wrong?', options:[
+          ['Laptop purchase → Advertising',true,'Correct. A laptop is equipment, not advertising. Accurate classification matters.'],
+          ['Store rent → Rent Expense',false,'That classification makes sense.'],
+          ['Packaging materials → Supplies',false,'That classification is reasonable.'],
+          ['Online sale → Revenue',false,'A sale creates revenue.']
+        ]},
+        {type:'choice', title:'Now let AI help', body:'AI classified a $900 payment to “Studio Camera Supply” as Advertising Expense with only 64% confidence. What should happen next?', options:[
+          ['Accept the AI classification automatically',false,'Low-confidence or unusual transactions should be reviewed.'],
+          ['Review the transaction because the classification is uncertain',true,'Exactly. Automation can handle routine work, but unclear transactions still require review.'],
+          ['Delete the transaction',false,'The transaction still needs to be recorded appropriately.'],
+          ['Ignore it',false,'Ignoring uncertainty is not a good control.']
+        ]}
+      ],
+      career:'Bookkeeping can involve recording transactions, organizing information, reconciling accounts, categorizing expenses, and maintaining accurate records. It is an important foundation—but only one part of accounting.',
+      reflectionPrompt:'Was this close to what you expected accounting to be like?',
+      reflectionOptions:['Yes, very close','Somewhat','Not really','Not at all'],
+      next:'tax',
+      nextLabel:'See How Accountants Advise Businesses'
+    },
+    tax: {
+      title:'Tax: Help a Business Make a Decision',
+      badge:'Tax Strategist',
+      intro:'Campus Threads wants to open a second location. Taxes matter—but so do rent, employees, incentives, and customer demand.',
+      scenarioHtml:`<div class="grid grid-2">
+        <div class="card"><h3>Harbor City</h3><p>Annual rent: $120,000</p><p>Business tax: Higher</p><p>Hiring credit: $20,000</p><p>Expected sales: $800,000</p><p>Planned employees: 22</p></div>
+        <div class="card"><h3>River City</h3><p>Annual rent: $165,000</p><p>Business tax: Lower</p><p>Equipment incentive: $12,000</p><p>Expected sales: $875,000</p><p>Planned employees: 15</p></div>
+      </div>`,
+      steps:[
+        {type:'choice', title:'Is the tax rate enough?', body:'Management asks: “Which city has the lower tax rate?” Is that enough information to choose the location?', options:[
+          ['Yes',false,'A lower tax rate does not automatically make a location better.'],
+          ['No',true,'Correct. Tax professionals often evaluate taxes alongside broader business economics.']
+        ]},
+        {type:'choice', title:'What information matters?', body:'Which statement is strongest?', options:[
+          ['Only the tax rates matter',false,'Tax rates are only one factor.'],
+          ['Rent, sales, employee count, tax rates, and incentives can all matter',true,'Correct. Good advice considers the full set of relevant facts.'],
+          ['Only expected sales matter',false,'Sales are important, but not the only factor.'],
+          ['Only rent matters',false,'Rent is one part of the decision.']
+        ]},
+        {type:'choice', title:'Hiring credit', body:'Harbor City’s hiring credit requires at least 20 full-time employees. Campus Threads plans to hire 22. Does it appear to meet that stated threshold?', options:[
+          ['Yes',true,'Correct. Based on the information available, it appears to meet the employee threshold.'],
+          ['No',false,'22 is above the stated threshold of 20.'],
+          ['Not enough information',false,'For this simplified scenario, the relevant threshold information is provided.']
+        ]},
+        {type:'choice', title:'AI tax summary', body:'AI says Campus Threads qualifies for a $25,000 River City expansion credit. The underlying rule requires at least $500,000 of qualifying equipment spending, but Campus Threads plans only $220,000. What should the tax professional do?', options:[
+          ['Use the AI conclusion',false,'The AI summary does not fit the actual facts.'],
+          ['Verify whether the requirements actually apply',true,'Correct. AI can help find rules, but professionals still verify whether the rules fit the facts.'],
+          ['Ignore the rule',false,'The rule determines eligibility.'],
+          ['Automatically increase equipment spending',false,'The tax result should not drive a decision without considering the economics.']
+        ]},
+        {type:'choice', title:'Recommendation mindset', body:'Which principle is strongest?', options:[
+          ['Always choose the lowest tax rate',false,'A lower tax rate can be outweighed by other business factors.'],
+          ['Evaluate taxes together with the broader economics of the decision',true,'Correct. Tax planning is part of business decision-making.'],
+          ['Taxes do not matter',false,'Taxes can materially affect decisions.'],
+          ['Let AI decide',false,'AI can assist, but professionals must evaluate the full facts.']
+        ]}
+      ],
+      career:'Tax professionals may research rules, evaluate incentives, structure transactions, support expansion decisions, and help clients understand financial consequences. Tax is more than preparing returns.',
+      reflectionPrompt:'Did this feel like what you expected tax accounting to be?',
+      reflectionOptions:['Yes','Somewhat','Not really','Not at all'],
+      next:'audit',
+      nextLabel:'Next: Can You Trust the Numbers?'
+    },
+    audit: {
+      title:'Audit: Can You Trust the Numbers?',
+      badge:'Professional Skeptic',
+      intro:'Campus Threads is preparing financial statements for investors. Sales declined 5%, but inventory increased 40%. The audit team thinks that relationship deserves attention.',
+      scenarioHtml:`<div class="card center"><div class="big-number">-5% / +40%</div><p>Sales change / Inventory change</p></div>`,
+      steps:[
+        {type:'choice', title:'First move', body:'What should the auditor do first?', options:[
+          ['Assume inventory is wrong',false,'Auditors investigate before reaching conclusions.'],
+          ['Ask management why inventory increased',true,'Correct. Auditors investigate unusual relationships before deciding something is wrong.'],
+          ['Reduce inventory automatically',false,'Auditors do not unilaterally rewrite the client’s books.'],
+          ['Ignore it',false,'The unusual relationship warrants attention.']
+        ]},
+        {type:'choice', title:'Management explanation', body:'Management says: “We purchased more inventory because we expect strong holiday sales.” Is the explanation enough by itself?', options:[
+          ['Yes',false,'Auditors need evidence, not only explanations.'],
+          ['No',true,'Correct. Explanations matter, but evidence is still required.']
+        ]},
+        {type:'choice', title:'What evidence helps?', body:'Which evidence would help evaluate management’s explanation?', options:[
+          ['Vendor invoices, purchase records, warehouse counts, and sales forecasts',true,'Correct. Multiple forms of evidence help build a stronger picture.'],
+          ['Only a verbal explanation',false,'A verbal explanation alone is not enough.'],
+          ['Only the company website',false,'That would not directly support the inventory balance.'],
+          ['No evidence is needed',false,'Audit conclusions require evidence.']
+        ]},
+        {type:'choice', title:'Conflicting evidence', body:'Vendor invoices show large purchases and the sales forecast is optimistic, but the warehouse count shows fewer units than the accounting records. Which evidence creates the biggest concern?', options:[
+          ['The warehouse count',true,'Correct. The physical inventory does not appear to match the accounting records.'],
+          ['The optimistic sales forecast',false,'That may matter, but the direct mismatch in inventory is more concerning.'],
+          ['The existence of vendor invoices',false,'Those actually support that purchases occurred.']
+        ]},
+        {type:'choice', title:'AI audit alert', body:'AI flags several unusual inventory purchases recorded on December 31. What should the auditor do?', options:[
+          ['Assume AI found fraud',false,'A flag is not a conclusion.'],
+          ['Examine the transactions and supporting evidence',true,'Correct. AI can help identify where to look; auditors still evaluate what the evidence means.'],
+          ['Delete the transactions',false,'Auditors do not simply delete client transactions.'],
+          ['Ignore the alert',false,'The alert is a useful risk signal that deserves review.']
+        ]}
+      ],
+      career:'Auditors gather evidence, challenge assumptions, evaluate explanations, communicate with management, and use professional skepticism. They do not simply “check the math.”',
+      reflectionPrompt:'What surprised you most about audit?',
+      reflectionOptions:['The amount of investigation','The use of judgment','The role of technology','The need to communicate with management','Nothing surprised me'],
+      next:'forensic',
+      nextLabel:'Next: Follow the Money'
+    },
+    forensic: {
+      title:'Forensic Accounting: Follow the Money',
+      badge:'Fraud Investigator',
+      intro:'Campus Threads notices that operating expenses are rising unexpectedly. Management thinks money may be leaving the company improperly.',
+      scenarioHtml:`<div class="scenario"><h3>Case 24-017</h3><p>Question: Why have operating expenses increased by $46,000?</p><p>Available evidence: vendor payments, invoices, employee records, emails, and approval history.</p></div>`,
+      steps:[
+        {type:'choice', title:'Find the pattern', body:'Northline Consulting has repeated $4,900 payments, similar invoice numbers, and minimal descriptions. Which vendor deserves the most attention?', options:[
+          ['Northline Consulting',true,'Correct. The recurring round-dollar payments and weak descriptions justify closer review.'],
+          ['Regular office supply vendor',false,'Nothing described here makes that vendor especially unusual.'],
+          ['Shipping company',false,'Nothing described here makes that vendor especially unusual.']
+        ]},
+        {type:'choice', title:'Address match', body:'Northline Consulting is registered at 1487 Willow Lane. Employee Jordan Blake lists the same home address. Does this prove fraud?', options:[
+          ['Yes',false,'The shared address is suspicious, but one clue is not enough to prove fraud.'],
+          ['No',true,'Correct. It is suspicious evidence that warrants further investigation.']
+        ]},
+        {type:'choice', title:'What next?', body:'What should the team review next?', options:[
+          ['Vendor bank information, approval history, employee emails, and original invoices',true,'Correct. Multiple evidence sources can help determine what actually happened.'],
+          ['Only the employee’s job title',false,'That would not be enough to resolve the issue.'],
+          ['Nothing else',false,'The available clues justify additional investigation.']
+        ]},
+        {type:'choice', title:'Approval threshold pattern', body:'Company policy requires secondary approval at $5,000. Northline invoices are $4,875, $4,920, $4,950, and $4,880. What pattern do you notice?', options:[
+          ['Payments consistently fall just below the approval threshold',true,'Correct. That pattern may indicate an attempt to avoid secondary review.'],
+          ['The invoices are randomly sized',false,'The amounts cluster directly below the threshold.'],
+          ['There is no pattern',false,'There is a clear relationship to the $5,000 limit.']
+        ]},
+        {type:'choice', title:'AI finds part of the story', body:'AI says the Northline payments are statistically unusual, but it does not connect the vendor address to Jordan Blake. What does this show?', options:[
+          ['AI can identify patterns while humans may still need to connect context',true,'Exactly. Technology can surface signals; people still interpret relationships and evidence.'],
+          ['AI is useless',false,'AI provided a useful lead.'],
+          ['Humans should never use AI',false,'The strongest approach combines technology with professional judgment.']
+        ]},
+        {type:'choice', title:'Reasonable conclusion', body:'What conclusion can you reasonably make right now?', options:[
+          ['Fraud is definitely proven',false,'Suspicion is not the same as proof.'],
+          ['There is enough suspicious evidence to justify a deeper investigation',true,'Correct. Professional investigators distinguish evidence from a final conclusion.'],
+          ['Nothing unusual happened',false,'Multiple facts are unusual and deserve investigation.']
+        ]}
+      ],
+      career:'Forensic accountants may work in accounting firms, consulting, corporate investigations, government, insurance, litigation support, and law enforcement. The work combines accounting with investigation and evidence evaluation.',
+      reflectionPrompt:'Did you know accountants could do work like this?',
+      reflectionOptions:['Yes','Somewhat','No'],
+      next:'compare',
+      nextLabel:'Compare the Four Areas'
+    }
+  };
+
+  function simulationView(key){
+    const sim=sims[key];
+    const step=state.simulationStep[key]||0;
+    if(step===0) return renderSimIntro(key,sim);
+    if(step<=sim.steps.length) return renderSimStep(key,sim,step-1);
+    return renderSimCareer(key,sim);
+  }
+  function renderSimIntro(key,sim){
+    render(`<div class="sim-shell">
+      <div class="sim-top"><div><span class="eyebrow">${key==='bookkeeping'?'Record':key==='tax'?'Advise':key==='audit'?'Verify':'Investigate'}</span><h1 class="page-title">${sim.title}</h1></div><div class="meta">${key==='bookkeeping'?'4–6':key==='tax'?'6–8':key==='audit'?'8–10':'10–12'} min</div></div>
+      <div class="scenario"><h3>Your Role</h3><p>${sim.intro}</p></div>
+      ${sim.scenarioHtml||''}
+      <button class="btn btn-primary" onclick="app.setSimStep('${key}',1)">Start</button>
+    </div>`);
+  }
+  function renderSimStep(key,sim,idx){
+    const s=sim.steps[idx];
+    render(`<div class="sim-shell">
+      <div class="sim-top"><div><span class="eyebrow">${sim.title.split(':')[0]}</span><h2>${s.title}</h2></div><div class="meta">Step ${idx+1} of ${sim.steps.length}</div></div>
+      <div class="progress-track"><div class="progress-fill" style="width:${(idx+1)/sim.steps.length*100}%"></div></div>
+      <div class="scenario"><p>${s.body}</p></div>
+      <div class="option-list">
+        ${s.options.map((o,i)=>`<button class="option" onclick="app.answerSim('${key}',${idx},${i})">${o[0]}</button>`).join('')}
+      </div>
+      <div id="simFeedback"></div>
+      ${s.extra?`<div class="inline-note top-gap">${s.extra}</div>`:''}
+      <div class="sticky-actions">
+        <button class="btn btn-secondary" onclick="app.setSimStep('${key}',${idx===0?0:idx})">Back</button>
+        <button id="simNextBtn" class="btn btn-primary hidden" onclick="app.setSimStep('${key}',${idx+2})">${idx===sim.steps.length-1?'Career Connection':'Continue'}</button>
+      </div>
+    </div>`);
+  }
+  function answerSim(key,idx,optIdx){
+    const sim=sims[key], option=sim.steps[idx].options[optIdx];
+    document.querySelectorAll('.option').forEach((el,i)=>{
+      el.disabled=true;
+      if(i===optIdx) el.classList.add(option[1]?'correct':'incorrect');
+    });
+    const feedback=document.getElementById('simFeedback');
+    feedback.innerHTML=`<div class="feedback ${option[1]?'good':'warn'}">${option[2]}</div>`;
+    if(option[1]) state.scores[key]=(state.scores[key]||0)+10;
+    save();
+    document.getElementById('simNextBtn').classList.remove('hidden');
+  }
+  function renderSimCareer(key,sim){
+    const currentReflection=state.reflections[key];
+    render(`<div class="sim-shell">
+      <span class="eyebrow">Career Connection</span>
+      <h1 class="page-title">${sim.title.split(':')[0]} in the real world</h1>
+      <div class="card"><p>${sim.career}</p></div>
+      <div class="section">
+        <span class="badge">${sim.badge}</span>
+        <h2>${sim.reflectionPrompt}</h2>
+        <div class="option-list">
+          ${sim.reflectionOptions.map(o=>`<button class="option ${currentReflection===o?'selected':''}" onclick='app.setReflection(${JSON.stringify(key)},${JSON.stringify(o)})'>${o}</button>`).join('')}
+        </div>
+      </div>
+      <div class="sticky-actions"><button class="btn btn-primary" ${!currentReflection?'disabled style="opacity:.45"':''} onclick="app.completeSim('${key}')">${sim.nextLabel}</button></div>
+    </div>`);
+  }
+  function setSimStep(key,step){ state.simulationStep[key]=step; save(); simulationView(key); }
+  function setReflection(key,val){ state.reflections[key]=val; save(); simulationView(key); }
+  function completeSim(key){
+    state.completed[key]=true;
+    const badge=sims[key].badge;
+    if(!state.badges.includes(badge)) state.badges.push(badge);
+    state.simulationStep[key]=sims[key].steps.length+1;
+    save();
+    go(sims[key].next);
+  }
+
+  function compareView(){
+    render(`
+      <span class="eyebrow">Compare the Work</span>
+      <h1 class="page-title">You just experienced four different sides of accounting.</h1>
+      <div class="section">
+        <table class="comparison-table">
+          <thead><tr><th>Area</th><th>Verb</th><th>Main Question</th><th>Key Skills</th></tr></thead>
+          <tbody>
+            <tr><td>Bookkeeping</td><td>Record</td><td>What happened?</td><td>Accuracy, organization</td></tr>
+            <tr><td>Tax</td><td>Advise</td><td>What should we do?</td><td>Research, planning</td></tr>
+            <tr><td>Audit</td><td>Verify</td><td>Can we trust it?</td><td>Skepticism, evidence</td></tr>
+            <tr><td>Forensic Accounting</td><td>Investigate</td><td>What happened here?</td><td>Investigation, pattern recognition</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <section class="section result-box"><h2>Accounting is not one job.</h2><p>Different roles use financial information to organize businesses, support decisions, verify information, and investigate problems.</p></section>
+      <div class="cta-row"><button class="btn btn-primary" onclick="app.go('ai')">Now See How AI Changes the Work</button></div>
+    `);
+  }
+
+  function aiView(){
+    const step=state.simulationStep.ai||0;
+    if(step===0) return render(`
+      <div class="sim-shell">
+        <span class="eyebrow">Adapt</span>
+        <h1 class="page-title">Will AI replace accountants?</h1>
+        <p class="lede">AI can already process transactions, search huge amounts of information, identify patterns, and draft reports. So what is left for accountants?</p>
+        <div class="scenario"><h3>Dedicated AI Experience</h3><p>You’ll compare AI and human strengths, work through two mini-cases, and see how AI affects bookkeeping, tax, audit, and forensic accounting.</p></div>
+        <button class="btn btn-primary" onclick="app.setAIStep(1)">Find Out</button>
+      </div>`);
+    if(step===1) return aiQuizView();
+    if(step===2) return aiStrengthsView();
+    if(step===3) return aiCaseOne();
+    if(step===4) return aiCaseTwo();
+    if(step===5) return aiAcrossAreas();
+    if(step===6) return aiReflection();
+  }
+  const aiTasks=[
+    ['Categorize 20,000 routine credit-card transactions.','AI','AI is well suited to repetitive, high-volume categorization.'],
+    ['Decide whether management’s explanation for an unusual transaction is believable.','Both','AI can organize information, but the accountant evaluates context and evidence.'],
+    ['Search hundreds of pages of tax guidance.','Both','AI can accelerate research, while professionals still verify sources and relevance.'],
+    ['Determine whether a tax rule actually applies to a company’s facts.','Both','Applying a rule requires factual understanding and judgment.'],
+    ['Identify unusual patterns in thousands of transactions.','AI','Pattern detection at scale is a strength of AI.'],
+    ['Interview a manager about conflicting evidence.','Accountant','Human communication, follow-up, and judgment matter here.'],
+    ['Draft a client email.','Both','AI can draft, but the accountant should review accuracy, tone, and context.'],
+    ['Take professional responsibility for an audit conclusion.','Accountant','Professional responsibility remains with the human professional.']
+  ];
+  function aiQuizView(){
+    const idx=state.aiTaskIndex||0;
+    const t=aiTasks[idx];
+    render(`<div class="sim-shell">
+      <span class="eyebrow">AI, Accountant, or Both?</span>
+      <h1 class="page-title">Who should handle this?</h1>
+      <div class="scenario"><h3>Task ${idx+1} of ${aiTasks.length}</h3><p>${t[0]}</p></div>
+      <div class="grid grid-3">
+        ${['AI','Accountant','Both'].map(o=>`<button class="option center" onclick='app.answerAI(${JSON.stringify(o)})'>${o}</button>`).join('')}
+      </div>
+      <div id="aiFeedback"></div>
+    </div>`);
+  }
+  function answerAI(answer){
+    const idx=state.aiTaskIndex||0, t=aiTasks[idx], correct=answer===t[1];
+    document.querySelectorAll('.option').forEach(el=>el.disabled=true);
+    document.getElementById('aiFeedback').innerHTML=`<div class="feedback ${correct?'good':'warn'}"><strong>${correct?'Good call.':'Consider the role of both technology and judgment.'}</strong><br>${t[2]}</div>
+      <div class="sticky-actions"><button class="btn btn-primary" onclick="app.nextAITask()">${idx===aiTasks.length-1?'Continue':'Next Task'}</button></div>`;
+    if(correct) state.scores.ai=(state.scores.ai||0)+5;
+    save();
+  }
+  function nextAITask(){
+    const idx=state.aiTaskIndex||0;
+    if(idx<aiTasks.length-1){ state.aiTaskIndex=idx+1; save(); aiQuizView(); }
+    else { state.aiTaskIndex=0; state.simulationStep.ai=2; save(); aiView(); }
+  }
+  function setAIStep(s){state.simulationStep.ai=s;save();aiView();}
+  function aiStrengthsView(){
+    render(`<div class="sim-shell">
+      <span class="eyebrow">Strengths</span>
+      <h1 class="page-title">AI is powerful. So is human judgment.</h1>
+      <div class="grid grid-2 section">
+        <div class="card"><h2>Where AI is strong</h2><ul><li>Processing large datasets</li><li>Repetitive tasks</li><li>Searching large bodies of information</li><li>Pattern detection</li><li>Categorization</li><li>Drafting</li><li>Automation</li><li>Anomaly detection</li></ul></div>
+        <div class="card"><h2>Where accountants still matter</h2><ul><li>Context</li><li>Judgment</li><li>Professional skepticism</li><li>Communication</li><li>Investigation</li><li>Decision-making</li><li>Business understanding</li><li>Accountability</li></ul></div>
+      </div>
+      <div class="result-box section"><h2>AI can produce information. Accountants still have to determine what that information means.</h2></div>
+      <div class="cta-row"><button class="btn btn-primary" onclick="app.setAIStep(3)">Try an AI Mini-Case</button></div>
+    </div>`);
+  }
+  function aiCaseOne(){
+    render(`<div class="sim-shell">
+      <span class="eyebrow">Mini-Case 1</span><h1 class="page-title">The AI flagged something.</h1>
+      <div class="scenario"><p>AI flags a $12,000 payment to CloudCore Systems because it is much larger than normal company payments.</p></div>
+      <div class="grid grid-3">
+        <div class="evidence"><div class="label">Contract</div><h3>Annual software license</h3><p>12-month enterprise subscription.</p></div>
+        <div class="evidence"><div class="label">Invoice</div><h3>$12,000</h3><p>Matches the approved annual contract.</p></div>
+        <div class="evidence"><div class="label">Approval</div><h3>Approved</h3><p>Authorized by the IT director and CFO.</p></div>
+      </div>
+      <h2>What happened?</h2>
+      <div class="option-list">
+        <button class="option" onclick="app.answerAICase1(false,'Fraud is not supported by the available evidence.')">Fraud</button>
+        <button class="option" onclick="app.answerAICase1(true,'Correct. The transaction looked unusual, but the context shows it was legitimate.')">Legitimate transaction that looked unusual</button>
+        <button class="option" onclick="app.answerAICase1(false,'The AI did something useful: it surfaced an unusual transaction for review.')">AI system failure</button>
+      </div>
+      <div id="aiFeedback"></div>
+    </div>`);
+  }
+  function answerAICase1(correct,msg){
+    document.querySelectorAll('.option').forEach(el=>el.disabled=true);
+    document.getElementById('aiFeedback').innerHTML=`<div class="feedback ${correct?'good':'warn'}">${msg}<br><strong>A flag is not a conclusion.</strong></div><div class="sticky-actions"><button class="btn btn-primary" onclick="app.setAIStep(4)">Next Mini-Case</button></div>`;
+    if(correct) state.scores.ai+=10; save();
+  }
+  function aiCaseTwo(){
+    render(`<div class="sim-shell">
+      <span class="eyebrow">Mini-Case 2</span><h1 class="page-title">The AI missed something.</h1>
+      <div class="scenario"><p>AI does not flag several small vendor payments because each amount is individually normal.</p></div>
+      <div class="grid grid-3">
+        <div class="evidence"><div class="label">Pattern</div><h3>Repeated amounts</h3><p>$4,850–$4,980 payments.</p></div>
+        <div class="evidence"><div class="label">Invoices</div><h3>Very similar numbering</h3><p>Several invoices appear nearly duplicated.</p></div>
+        <div class="evidence"><div class="label">Approval</div><h3>Same approver</h3><p>Every payment is approved by one employee.</p></div>
+      </div>
+      <h2>What might the system have missed?</h2>
+      <div class="option-list">
+        <button class="option" onclick="app.answerAICase2(true)">Context across multiple pieces of information</button>
+        <button class="option" onclick="app.answerAICase2(false)">Nothing—the payments must be fine</button>
+        <button class="option" onclick="app.answerAICase2(false)">The need to delete all transactions</button>
+      </div><div id="aiFeedback"></div>
+    </div>`);
+  }
+  function answerAICase2(correct){
+    document.querySelectorAll('.option').forEach(el=>el.disabled=true);
+    document.getElementById('aiFeedback').innerHTML=`<div class="feedback ${correct?'good':'warn'}">${correct?'Correct. Technology can identify many patterns, but human curiosity and context still matter.':'Look at the relationship among the payments, invoice numbers, and approvals.'}</div><div class="sticky-actions"><button class="btn btn-primary" onclick="app.setAIStep(5)">See AI Across Accounting</button></div>`;
+    if(correct) state.scores.ai+=10; save();
+  }
+  function aiAcrossAreas(){
+    render(`<div class="sim-shell">
+      <span class="eyebrow">Across the Profession</span><h1 class="page-title">AI changes each area differently.</h1>
+      <div class="grid grid-2 section">
+        ${aiArea('Bookkeeping',['Categorize transactions','Match receipts','Reconcile accounts','Detect duplicates'],['Review exceptions','Correct classifications','Investigate discrepancies'])}
+        ${aiArea('Tax',['Search guidance','Summarize rules','Organize documents'],['Interpret facts','Evaluate uncertainty','Advise clients'])}
+        ${aiArea('Audit',['Analyze transactions','Flag unusual patterns','Automate parts of testing'],['Evaluate evidence','Interview management','Exercise skepticism','Reach conclusions'])}
+        ${aiArea('Forensic Accounting',['Find patterns','Analyze transactions','Search communications'],['Develop theories','Conduct interviews','Evaluate context','Communicate findings'])}
+      </div>
+      <div class="result-box section"><h2>The Future Accountant</h2><p>Accounting Knowledge + Business Understanding + Technology Skills + Judgment + Communication</p></div>
+      <div class="cta-row"><button class="btn btn-primary" onclick="app.setAIStep(6)">Reflect on AI</button></div>
+    </div>`);
+  }
+  function aiArea(name,ai,human){
+    return `<div class="card"><h3>${name}</h3><p><strong>AI may help:</strong></p><ul>${ai.map(x=>`<li>${x}</li>`).join('')}</ul><p><strong>Accountants still:</strong></p><ul>${human.map(x=>`<li>${x}</li>`).join('')}</ul></div>`;
+  }
+  function aiReflection(){
+    const val=state.postSurvey.aiBelief;
+    const opts=['AI will likely eliminate most accounting work','AI will automate some tasks and change accounting jobs','AI probably will not affect accounting much','I am still unsure'];
+    render(`<div class="sim-shell"><span class="eyebrow">Reflection</span><h1 class="page-title">How do you see AI now?</h1>
+      <p class="lede">Which statement best matches your view after the examples you just saw?</p>
+      <div class="option-list">${opts.map(o=>`<button class="option ${val===o?'selected':''}" onclick='app.setPostAI(${JSON.stringify(o)})'>${o}</button>`).join('')}</div>
+      <div class="sticky-actions"><button class="btn btn-primary" ${!val?'disabled style="opacity:.45"':''} onclick="app.completeAI()">See Where Accountants Work</button></div>
+    </div>`);
+  }
+  function setPostAI(v){state.postSurvey.aiBelief=v;save();aiView();}
+  function completeAI(){
+    state.completed.ai=true;
+    if(!state.badges.includes('Future Accountant')) state.badges.push('Future Accountant');
+    save(); go('industries');
+  }
+
+  function industriesView(){
+    const selected=state.selectedIndustry;
+    render(`<span class="eyebrow">Across Industries</span><h1 class="page-title">Accounting exists inside the industries you already care about.</h1>
+      <p class="lede">Pick an industry to see how bookkeeping, tax, audit, forensic accounting, and AI can show up inside it.</p>
+      <div class="grid grid-3 section">
+        ${Object.keys(industries).map(name=>`<button class="card industry-card" onclick='app.selectIndustry(${JSON.stringify(name)})'><h3>${name}</h3><p>Explore accounting inside ${name.toLowerCase()}.</p></button>`).join('')}
+      </div>
+      ${selected ? industryDetail(selected) : ''}
+      <div class="cta-row section"><button class="btn btn-primary" onclick="app.go('reflection')">Find What Interested You Most</button></div>`);
+  }
+  function selectIndustry(name){state.selectedIndustry=name;save();industriesView();}
+  function industryDetail(name){
+    const x=industries[name];
+    return `<div class="industry-detail card"><h2>${name}</h2>
+      <div class="grid grid-2">
+        <div><h3>Bookkeeping</h3><p>${x.bookkeeping}</p></div>
+        <div><h3>Tax</h3><p>${x.tax}</p></div>
+        <div><h3>Audit</h3><p>${x.audit}</p></div>
+        <div><h3>Forensic</h3><p>${x.forensic}</p></div>
+        <div><h3>AI + Technology</h3><p>${x.ai}</p></div>
+      </div>
+      <div class="inline-note top-gap"><strong>You do not always have to choose between accounting and an industry you care about.</strong> Accounting can be how you work inside that industry.</div>
+    </div>`;
+  }
+
+  function reflectionView(){
+    const opts=['Organizing financial information','Advising businesses','Evaluating evidence','Investigating suspicious activity','Working with technology'];
+    render(`<div class="question-shell"><span class="eyebrow">Career Reflection</span><h1 class="page-title">What type of work interested you most?</h1>
+      <p class="lede">Choose up to two. This is not an aptitude test—it is just a way to point you toward areas you may want to explore.</p>
+      <div class="option-list">${opts.map(o=>`<button class="option ${state.favoriteAreas.includes(o)?'selected':''}" onclick='app.toggleFavorite(${JSON.stringify(o)})'>${o}</button>`).join('')}</div>
+      ${state.favoriteAreas.length?careerSuggestions():''}
+      <div class="sticky-actions"><button class="btn btn-primary" ${state.favoriteAreas.length===0?'disabled style="opacity:.45"':''} onclick="app.postSurveyView(0)">Continue to Final Reflection</button></div>
+    </div>`);
+  }
+  function toggleFavorite(o){
+    const a=[...state.favoriteAreas], i=a.indexOf(o);
+    if(i>=0)a.splice(i,1); else if(a.length<2)a.push(o); else { alert('Choose up to two.'); return; }
+    state.favoriteAreas=a; save(); reflectionView();
+  }
+  function careerSuggestions(){
+    const map={
+      'Organizing financial information':['Corporate accounting','Accounting operations','Controller pathway','Financial reporting'],
+      'Advising businesses':['Tax','Business advisory','Transaction-related accounting'],
+      'Evaluating evidence':['External audit','Internal audit','Assurance'],
+      'Investigating suspicious activity':['Forensic accounting','Fraud examination','Government investigations'],
+      'Working with technology':['Accounting analytics','Technology-enabled audit','Accounting systems','Data-oriented accounting roles']
+    };
+    const set=[...new Set(state.favoriteAreas.flatMap(x=>map[x]))];
+    return `<div class="card top-gap"><h3>You may want to explore:</h3><div class="cta-row">${set.map(x=>`<span class="pill">${x}</span>`).join('')}</div></div>`;
+  }
+
+  const postQuestions=[
+    {key:'definition',prompt:'What do accountants do?',options:['Record transactions','Advise businesses','Verify financial information','Investigate fraud','Use technology','All of the above']},
+    {key:'interest',prompt:'How interested are you in learning more about accounting now?',scale:true},
+    {key:'change',prompt:'Did your perception of accounting change?',options:['A lot','Somewhat','Slightly','Not really','Not at all']},
+    {key:'explore',prompt:'Which area would you most like to explore further?',options:['Bookkeeping / Corporate Accounting','Tax','Audit','Forensic Accounting','Accounting + Technology','None']},
+    {key:'shift',prompt:'Which part of the experience changed your perception the most?',options:['Bookkeeping','Tax','Audit','Forensic Accounting','AI and Accounting','Industry Exploration','Nothing changed my perception']}
+  ];
+  function postSurveyView(idx){
+    if(idx>=postQuestions.length){save();return resultsView();}
+    const q=postQuestions[idx], val=state.postSurvey[q.key];
+    let options='';
+    if(q.scale){
+      options=`<div class="scale">${[1,2,3,4,5].map(n=>`<button class="option ${val===n?'selected':''}" onclick="app.setPost('${q.key}',${n}); app.postSurveyView(${idx})">${n}<br><span class="small">${n===1?'Not interested':n===5?'Very interested':''}</span></button>`).join('')}</div>`;
+    } else options=`<div class="option-list">${q.options.map(o=>`<button class="option ${val===o?'selected':''}" onclick='app.setPost(${JSON.stringify(q.key)},${JSON.stringify(o)}); app.postSurveyView(${idx})'>${o}</button>`).join('')}</div>`;
+    render(`<div class="question-shell"><div class="question-number">Final reflection ${idx+1} of ${postQuestions.length}</div><div class="progress-track"><div class="progress-fill" style="width:${(idx+1)/postQuestions.length*100}%"></div></div><h2>${q.prompt}</h2>${options}<div class="sticky-actions">${idx>0?`<button class="btn btn-secondary" onclick="app.postSurveyView(${idx-1})">Back</button>`:''}<button class="btn btn-primary" ${val==null?'disabled style="opacity:.45"':''} onclick="app.postSurveyView(${idx+1})">${idx===postQuestions.length-1?'See My Results':'Continue'}</button></div></div>`);
+  }
+  function setPost(k,v){state.postSurvey[k]=v;save();}
+  function resultsView(){
+    const before=state.preSurvey.interest||0, after=state.postSurvey.interest||0, delta=after-before;
+    const suggestions=state.favoriteAreas.length?careerSuggestions():'';
+    render(`<span class="eyebrow">Your Results</span><h1 class="page-title">Your Accounting Experience</h1>
+      <div class="grid grid-2 section">
+        <div class="card"><h2>Before</h2><p>You associated accounting with:</p><div class="cta-row">${(state.preSurvey.associations||[]).map(x=>`<span class="pill">${x}</span>`).join('')||'<span class="muted">No response</span>'}</div></div>
+        <div class="card"><h2>After</h2><p>You explored:</p><div class="cta-row"><span class="pill">Recording</span><span class="pill">Advising</span><span class="pill">Auditing</span><span class="pill">Investigation</span><span class="pill">AI + Technology</span></div></div>
+      </div>
+      <div class="grid grid-2 section">
+        <div class="card center"><h3>Interest change</h3><div class="result-delta">${delta>0?'+':''}${delta}</div><p>${before} / 5 before → ${after} / 5 after</p></div>
+        <div class="card"><h3>Perception change</h3><p>${state.postSurvey.change||'Not answered'}</p><h3>Area to explore</h3><p>${state.postSurvey.explore||'Not answered'}</p></div>
+      </div>
+      ${suggestions}
+      <div class="section result-box"><h2>Accounting may be broader than you initially thought.</h2><p>The goal of this experience is not to tell you what to major in. It is to give you enough context to decide whether accounting is worth exploring further.</p></div>
+      <div class="cta-row"><button class="btn btn-primary" onclick="app.go('hub')">Explore Again</button><button class="btn btn-secondary" onclick="app.reset()">Restart Experience</button></div>`);
+  }
+
+  function teachersView(){
+    render(`<span class="eyebrow">For Teachers</span><h1 class="page-title">A classroom introduction to accounting careers—no accounting expertise required.</h1>
+      <div class="grid grid-3 section">
+        <div class="card teacher-plan"><h3>15-Minute Version</h3><ul><li>Pre-survey</li><li>One simulation</li><li>Short discussion</li></ul></div>
+        <div class="card teacher-plan"><h3>30-Minute Version</h3><ul><li>Pre-survey</li><li>Bookkeeping</li><li>Audit or Forensic</li><li>AI mini-activity</li><li>Reflection</li></ul></div>
+        <div class="card teacher-plan"><h3>50-Minute Version</h3><ul><li>Pre-survey</li><li>All four simulations</li><li>AI section</li><li>Post-survey</li></ul></div>
+      </div>
+      <section class="section"><h2>Learning Objectives</h2><div class="grid grid-2">
+        <div class="card"><h3>Bookkeeping</h3><p>Students understand that accounting begins with accurate financial information.</p></div>
+        <div class="card"><h3>Tax</h3><p>Students understand that tax can involve planning and business decisions.</p></div>
+        <div class="card"><h3>Audit</h3><p>Students understand that auditors gather evidence and apply professional skepticism.</p></div>
+        <div class="card"><h3>Forensic Accounting</h3><p>Students understand that accounting can be used to investigate suspicious financial activity.</p></div>
+        <div class="card"><h3>AI</h3><p>Students understand that technology can automate some tasks while judgment remains important.</p></div>
+      </div></section>
+      <section class="section card"><h2>Discussion Questions</h2><ul>
+        <li>Which simulation was most different from your original view of accounting?</li>
+        <li>Which role required the most judgment?</li>
+        <li>Which role involved the most investigation?</li>
+        <li>Where could AI help?</li>
+        <li>Where would you still want human review?</li>
+        <li>Which accounting career surprised you most?</li>
+      </ul></section>
+      <section class="section card"><h2>Teaching Accounting in the Age of AI</h2><p>Use the AI module to discuss task automation versus professional judgment. Avoid presenting AI as either irrelevant or certain to replace entire professions. Focus students on what technology can do well, where context matters, and who remains responsible for conclusions.</p></section>
+      <section class="section"><h2>Quick Glossary</h2><div class="grid grid-2">
+        ${glossary('Asset','Something a business owns or controls that has value.')}
+        ${glossary('Liability','Something a business owes.')}
+        ${glossary('Revenue','Money earned from selling goods or services.')}
+        ${glossary('Expense','A cost incurred while operating the business.')}
+        ${glossary('Audit','An independent evaluation of financial information.')}
+        ${glossary('Professional Skepticism','A questioning mindset that does not automatically accept explanations without evidence.')}
+        ${glossary('Forensic Accounting','Using accounting and investigative techniques to examine potential fraud, misconduct, or disputes.')}
+      </div></section>`);
+  }
+  function glossary(t,d){return `<div class="card"><h3>${t}</h3><p>${d}</p></div>`;}
+
+  return {
+    go, reset, chooseSurvey, setPre, nextSurvey, prevSurvey, surveyQuestion, refreshSurvey,
+    setSimStep, answerSim, setReflection, completeSim,
+    setAIStep, answerAI, nextAITask, answerAICase1, answerAICase2, setPostAI, completeAI,
+    selectIndustry, toggleFavorite, postSurveyView, setPost
+  };
+})();
+
+document.addEventListener('DOMContentLoaded', () => app.go('home'));
+</script>
+</body>
+</html>
